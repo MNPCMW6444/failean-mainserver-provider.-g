@@ -1,1 +1,4 @@
-export { MainserverContext } from "./context/MainserverContext.js";
+export {
+  MainserverContext,
+  MainserverContextProvider,
+} from "./context/MainserverContext.js";
