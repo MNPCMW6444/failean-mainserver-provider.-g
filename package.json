@@ -1,6 +1,6 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.6.79",
+  "version": "2.6.80",
   "description": "mainserver provider for react apps",
   "type": "module",
   "main": "dist/index.js",
