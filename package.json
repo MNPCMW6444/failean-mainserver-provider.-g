@@ -1,0 +1,42 @@
+{
+  "name": "@failean/mainserver-provider",
+  "version": "2.6.78",
+  "description": "mainserver provider for react apps",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "restricted"
+  },
+  "scripts": {
+    "prebuild": "npm run version:patch",
+    "version:patch": "npm version patch --no-git-tag-version",
+    "version:minor": "npm version minor --no-git-tag-version",
+    "version:major": "npm version major --no-git-tag-version",
+    "update": "npx npm-check-updates -u",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && cp package.json ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/failean/mainserver-provider.git"
+  },
+  "author": "Michael Nusair",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/failean/mainserver-provider/issues"
+  },
+  "homepage": "https://github.com/failean/mainserver-provider#readme",
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.5",
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "typescript": "^5.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.1"
+  }
+}
