@@ -27,7 +27,6 @@ const domain =
 
 const axiosSettings = {
   baseURL: domain,
-  timeout: 9999999,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
