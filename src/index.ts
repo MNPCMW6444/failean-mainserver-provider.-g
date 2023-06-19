@@ -1,4 +1,4 @@
 export {
   MainserverContext,
-  MainserverContextProvider,
+  MainserverProvider,
 } from "./context/MainserverContext.js";
