@@ -8,9 +8,10 @@ import React, {
 import { Typography } from "@mui/material";
 import axios, { AxiosInstance } from "axios";
 
-interface ProvideMainserverProps {
+interface MainserverProviderProps {
   children: ReactNode;
   tryInterval?: number;
+  env?: "tst" | "dev";
 }
 
 const DEFAULT_TRY_INTERVAL = 3000;
@@ -19,19 +20,6 @@ const IDLE = "IDLE";
 const CHECKING_MESSAGE = "Checking server availability...";
 const BAD_MESSAGE = "Server is not available. Please try again later.";
 const GOOD_STATUS = "good";
-
-const domain =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:6555/"
-    : "https://tstmainserver.failean.com/";
-
-const axiosSettings = {
-  baseURL: domain,
-  withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
 
 const checkServerAvailability = async (axiosInstance: AxiosInstance) => {
   try {
@@ -43,23 +31,35 @@ const checkServerAvailability = async (axiosInstance: AxiosInstance) => {
   }
 };
 
-export const MainserverContext = createContext<{
+interface MainserverContextProps {
   axiosInstance: AxiosInstance;
   version: string;
-}>({
-  axiosInstance: axios.create(axiosSettings),
-  version: "",
-});
+}
 
-export const MainserverContextProvider = ({
+export const MainserverContext = createContext<MainserverContextProps | null>(
+  null
+);
+
+export const MainserverProvider = ({
   children,
   tryInterval,
-}: ProvideMainserverProps) => {
+  env,
+}: MainserverProviderProps) => {
   const [status, setStatus] = useState<string>(IDLE);
   const [version, setVersion] = useState<string>();
-  const axiosInstance = axios.create(axiosSettings);
 
   const statusRef = useRef(status);
+
+  const axiosInstance = axios.create({
+    baseURL:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:6555/"
+        : `https://${env || ""}mainserver.failean.com/`,
+    withCredentials: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   useEffect(() => {
     statusRef.current = status;
