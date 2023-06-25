@@ -1,6 +1,6 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.6.85",
+  "version": "2.6.87",
   "description": "mainserver provider for react apps",
   "type": "module",
   "main": "dist/index.js",
@@ -14,9 +14,11 @@
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:major": "npm version major --no-git-tag-version",
-    "update": "npx npm-check-updates -u",
-    "clean": "rm -rf dist",
-    "build": "npm run clean && tsc && cp package.json ./dist"
+    "preupdate": "npx npm-check-updates -u",
+    "update": "npm i",
+    "clean": "rm -rf node_modules package-lock.json",
+    "cleanbuild": "rm -rf dist",
+    "build": "npm run cleanbuild && tsc && cp package.json ./dist"
   },
   "repository": {
     "type": "git",
@@ -31,7 +33,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.5",
+    "@mui/material": "^5.13.6",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "typescript": "^5.1.3"
