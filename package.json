@@ -1,6 +1,6 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.6.87",
+  "version": "2.6.89",
   "description": "mainserver provider for react apps",
   "type": "module",
   "main": "dist/index.js",
@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/failean/mainserver-provider#readme",
   "dependencies": {
+    "@apollo/client": "^3.7.16",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.6",

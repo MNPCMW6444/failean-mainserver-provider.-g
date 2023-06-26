@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { Typography } from "@mui/material";
 import axios, { AxiosInstance } from "axios";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 interface MainserverProviderProps {
   children: ReactNode;
@@ -50,15 +51,22 @@ export const MainserverProvider = ({
 
   const statusRef = useRef(status);
 
+  const baseURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:6555/"
+      : `https://${env || ""}mainserver.failean.com/`;
+
   const axiosInstance = axios.create({
-    baseURL:
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:6555/"
-        : `https://${env || ""}mainserver.failean.com/`,
+    baseURL,
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
     },
+  });
+
+  const client = new ApolloClient({
+    uri: baseURL + "graphql",
+    cache: new InMemoryCache(),
   });
 
   useEffect(() => {
@@ -86,7 +94,7 @@ export const MainserverProvider = ({
       <MainserverContext.Provider
         value={{ version: version || "", axiosInstance }}
       >
-        {children}
+        <ApolloProvider client={client}>{children}</ApolloProvider>
       </MainserverContext.Provider>
     );
   } else {
