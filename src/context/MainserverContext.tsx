@@ -15,7 +15,31 @@ import {
   split,
 } from "@apollo/client";
 import { getMainDefinition } from "@apollo/client/utilities";
-import { WebSocketLink } from "@apollo/client/link/ws";
+
+import { createClient } from "graphql-ws";
+import { ApolloLink, Operation, FetchResult, Observable } from "@apollo/client";
+
+class WebSocketLink extends ApolloLink {
+  private client: any;
+
+  constructor(url: string) {
+    super();
+    this.client = createClient({ url });
+  }
+
+  public request(operation: Operation): Observable<FetchResult> {
+    return new Observable((sink) => {
+      return this.client.subscribe(
+        { ...operation, query: operation.query.loc?.source.body },
+        {
+          next: sink.next.bind(sink),
+          error: sink.error.bind(sink),
+          complete: sink.complete.bind(sink),
+        }
+      );
+    });
+  }
+}
 
 interface MainserverProviderProps {
   children: ReactNode;
@@ -76,15 +100,11 @@ export const MainserverProvider = ({
     uri: baseURL + "graphql",
   });
 
-  const wsLink = new WebSocketLink({
-    uri:
-      process.env.NODE_ENV === "development"
-        ? "ws://localhost:6555/graphql"
-        : `wss://${env || ""}mainserver.failean.com/graphql`,
-    options: {
-      reconnect: true,
-    },
-  });
+  const wsLink = new WebSocketLink(
+    process.env.NODE_ENV === "development"
+      ? "ws://localhost:6555/graphql"
+      : `wss://${env || ""}mainserver.failean.com/graphql`
+  );
 
   const link = split(
     ({ query }) => {
