@@ -1,6 +1,6 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.6.89",
+  "version": "2.6.94",
   "description": "mainserver provider for react apps",
   "type": "module",
   "main": "dist/index.js",
@@ -37,9 +37,12 @@
     "@mui/material": "^5.13.6",
     "axios": "^1.4.0",
     "react": "^18.2.0",
-    "typescript": "^5.1.3"
+    "subscriptions-transport-ws": "^0.11.0",
+    "typescript": "^5.1.3",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
-    "@types/node": "^20.3.1"
+    "@types/node": "^20.3.1",
+    "@types/ws": "^8.5.5"
   }
 }
