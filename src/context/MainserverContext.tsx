@@ -16,8 +16,9 @@ import {
 } from "@apollo/client";
 import { getMainDefinition } from "@apollo/client/utilities";
 
+import { ApolloLink, Operation, FetchResult } from "@apollo/client/core";
 import { createClient } from "graphql-ws";
-import { ApolloLink, Operation, FetchResult, Observable } from "@apollo/client";
+import Observable from "zen-observable";
 
 class WebSocketLink extends ApolloLink {
   private client: any;
