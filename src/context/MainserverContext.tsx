@@ -13,10 +13,12 @@ import {
   ApolloProvider,
   HttpLink,
   split,
+  ApolloLink,
+  Operation,
+  FetchResult,
 } from "@apollo/client";
-import { getMainDefinition } from "@apollo/client/utilities";
+import { getMainDefinition } from "@apollo/client/utilities/index.js";
 
-import { ApolloLink, Operation, FetchResult } from "@apollo/client/core";
 import { createClient } from "graphql-ws";
 import Observable from "zen-observable";
 
