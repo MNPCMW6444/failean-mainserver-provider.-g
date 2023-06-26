@@ -1,6 +1,6 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.6.94",
+  "version": "2.6.96",
   "description": "mainserver provider for react apps",
   "type": "module",
   "main": "dist/index.js",
@@ -36,6 +36,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.6",
     "axios": "^1.4.0",
+    "graphql-ws": "^5.14.0",
     "react": "^18.2.0",
     "typescript": "^5.1.3"
   },
