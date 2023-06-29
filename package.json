@@ -18,6 +18,8 @@
     "update": "npm i",
     "clean": "rm -rf node_modules package-lock.json",
     "cleanbuild": "rm -rf dist",
+    "pub": "npm publish",
+    "prepub": "npm run build",
     "build": "npm run cleanbuild && tsc && cp package.json ./dist"
   },
   "repository": {
