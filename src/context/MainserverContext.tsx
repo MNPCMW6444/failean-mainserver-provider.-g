@@ -31,12 +31,16 @@ class WebSocketLink extends ApolloLink {
   }
 
   public request(operation: Operation): Observable<FetchResult> {
+    console.log("Sending operation over websocket:", operation); // Log operation
     return new Observable((sink) => {
       return this.client.subscribe(
         { ...operation, query: operation.query.loc?.source.body },
         {
           next: sink.next.bind(sink),
-          error: sink.error.bind(sink),
+          error: (err: any) => {
+            console.error("Error in operation:", err); // Log operation error
+            sink.error.bind(sink);
+          },
           complete: sink.complete.bind(sink),
         }
       );
