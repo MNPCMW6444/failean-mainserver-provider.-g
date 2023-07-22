@@ -1,6 +1,6 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.7.109",
+  "version": "2.7.110",
   "description": "mainserver provider for react apps",
   "type": "module",
   "main": "dist/index.js",
@@ -29,10 +29,10 @@
   },
   "homepage": "https://github.com/failean/mainserver-provider#readme",
   "dependencies": {
-    "@apollo/client": "^3.7.16",
+    "@apollo/client": "^3.7.17",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.7",
+    "@mui/material": "^5.14.1",
     "axios": "^1.4.0",
     "graphql-ws": "^5.14.0",
     "react": "^18.2.0",
@@ -40,7 +40,7 @@
     "zen-observable": "^0.10.0"
   },
   "devDependencies": {
-    "@types/node": "^20.3.3",
+    "@types/node": "^20.4.3",
     "@types/zen-observable": "^0.8.3"
   }
 }
