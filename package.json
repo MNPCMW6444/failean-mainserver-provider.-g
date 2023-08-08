@@ -1,8 +1,8 @@
 {
   "name": "@failean/mainserver-provider",
-  "version": "2.7.118",
+  "version": "2.7.121",
   "description": "mainserver provider for react apps",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -178,6 +178,6 @@ export const MainserverProvider = ({
       </MainserverContext.Provider>
     );
   } else {
-    return customErrorTSX || <Typography>{status}</Typography>;
+    return <>{customErrorTSX}</> || <Typography>{status}</Typography>;
   }
 };
