@@ -52,6 +52,7 @@ interface MainserverProviderProps {
   children: ReactNode;
   tryInterval?: number;
   env?: "tst" | "dev";
+  customErrorTSX?: ReactNode;
 }
 
 const DEFAULT_TRY_INTERVAL = 3000;
@@ -69,6 +70,7 @@ export const MainserverProvider = ({
   children,
   tryInterval,
   env,
+  customErrorTSX,
 }: MainserverProviderProps) => {
   const interval = tryInterval || DEFAULT_TRY_INTERVAL;
   const IDLE = "IDLE";
@@ -176,6 +178,6 @@ export const MainserverProvider = ({
       </MainserverContext.Provider>
     );
   } else {
-    return <Typography>{status}</Typography>;
+    return customErrorTSX || <Typography>{status}</Typography>;
   }
 };
