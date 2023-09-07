@@ -6,17 +6,17 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prebuild": "npm run version:patch",
     "version:patch": "npm version patch --no-git-tag-version",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:major": "npm version major --no-git-tag-version",
-    "preupdate": "npx npm-check-updates -u",
     "update": "npm i",
-    "clean": "rm -rf node_modules package-lock.json",
-    "cleanbuild": "rm -rf dist",
+    "preupdate": "npx npm-check-updates -u",
     "pub": "npm publish",
     "prepub": "npm run build",
-    "build": "npm run cleanbuild && tsc && cp package.json ./dist"
+    "cleanbuild": "rm -rf dist",
+    "clean": "rm -rf node_modules package-lock.json",
+    "build": "npm run cleanbuild && tsc && cp package.json ./dist",
+    "prebuild": "npm run update && npm run version:patch"
   },
   "repository": {
     "type": "git",
